@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Token service",
+    "basePath": "/token-service",
+    "displayName": "Token service",
+    "iconName": "palette"
+}

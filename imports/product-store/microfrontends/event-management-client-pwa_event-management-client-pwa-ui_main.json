@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "event-management-client-pwa-ui",
+    "description": "event-management-client-pwa-ui",
+    "remoteBaseUrl": "/mfe/event-management-client-pwa/",
+    "remoteEntry": "/mfe/event-management-client-pwa/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./PWARemoteModule",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "event-management-client-pwa-ui",
+    "tagName": "event-management-client-pwa-ui-entrypoint",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}

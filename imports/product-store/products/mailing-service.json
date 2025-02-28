@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Mailing service",
+    "basePath": "/mailing-service",
+    "displayName": "Mailing service",
+    "iconName": "palette"
+}

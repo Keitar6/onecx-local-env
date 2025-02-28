@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "token-service-ui",
+    "description": "token-service-ui",
+    "remoteBaseUrl": "/mfe/token-service/",
+    "remoteEntry": "/mfe/token-service/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./TokenWebcomponent",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "token-service-ui",
+    "tagName": "token-service-ui-entrypoint",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}

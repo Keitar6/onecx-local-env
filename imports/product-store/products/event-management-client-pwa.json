@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Event management client pwa",
+    "basePath": "/event-management-client-pwa",
+    "displayName": "Event management client pwa",
+    "iconName": "palette"
+}

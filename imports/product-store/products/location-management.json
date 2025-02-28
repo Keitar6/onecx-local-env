@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Location management",
+    "basePath": "/location-management",
+    "displayName": "Location management",
+    "iconName": "palette"
+}

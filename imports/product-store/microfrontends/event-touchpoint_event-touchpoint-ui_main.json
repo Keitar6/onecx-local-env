@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "event-touchpoint-ui",
+    "description": "event-touchpoint-ui",
+    "remoteBaseUrl": "/mfe/event-touchpoint/",
+    "remoteEntry": "/mfe/event-touchpoint/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./TouchpointRemoteModule",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "event-touchpoint-ui",
+    "tagName": "event-touchpoint-ui-entrypoint",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}

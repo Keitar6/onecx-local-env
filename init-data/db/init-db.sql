@@ -43,3 +43,29 @@ GRANT ALL PRIVILEGES ON DATABASE onecx_tenant TO onecx_tenant;
 CREATE USER onecx_welcome WITH ENCRYPTED PASSWORD 'onecx_welcome';
 CREATE DATABASE onecx_welcome;
 GRANT ALL PRIVILEGES ON DATABASE onecx_welcome TO onecx_welcome;
+
+/* SETUP ONECX-LOCAL-ENV */
+-- --event_management
+CREATE USER event_management WITH ENCRYPTED PASSWORD 'event_management';
+CREATE DATABASE event_management;
+GRANT ALL PRIVILEGES ON DATABASE event_management TO event_management;
+
+-- --event_touchpoint_management
+CREATE USER event_touchpoint_management WITH ENCRYPTED PASSWORD 'event_touchpoint_management';
+CREATE DATABASE event_touchpoint_management;
+GRANT ALL PRIVILEGES ON DATABASE event_touchpoint_management TO event_touchpoint_management;
+
+-- --location_management
+CREATE USER location_management WITH ENCRYPTED PASSWORD 'location_management';
+CREATE DATABASE location_management;
+GRANT ALL PRIVILEGES ON DATABASE location_management TO location_management;
+
+-- --token_service
+CREATE USER token_service WITH ENCRYPTED PASSWORD 'token_service';
+CREATE DATABASE token_service;
+GRANT ALL PRIVILEGES ON DATABASE token_service TO token_service;
+
+-- --mailing_service
+CREATE USER mailing_service WITH ENCRYPTED PASSWORD 'mailing_service';
+CREATE DATABASE mailing_service;
+GRANT ALL PRIVILEGES ON DATABASE mailing_service TO mailing_service;

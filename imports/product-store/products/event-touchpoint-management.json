@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Event touchpoint management",
+    "basePath": "/event-touchpoint-management",
+    "displayName": "Event touchpoint management",
+    "iconName": "palette"
+}

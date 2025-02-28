@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "location-management-ui",
+    "description": "location-management-ui",
+    "remoteBaseUrl": "/mfe/location-management/",
+    "remoteEntry": "/mfe/location-management/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./LocationRemoteModule",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "location-management-ui",
+    "tagName": "location-management-ui-entrypoint",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}

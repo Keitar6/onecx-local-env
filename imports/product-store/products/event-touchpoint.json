@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Event touchpoint",
+    "basePath": "/event-touchpoint",
+    "displayName": "Event touchpoint",
+    "iconName": "palette"
+}

@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Event management",
+    "basePath": "/event-management",
+    "displayName": "Event management",
+    "iconName": "palette"
+}

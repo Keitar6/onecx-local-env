@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "mailing-service-ui",
+    "description": "mailing-service-ui",
+    "remoteBaseUrl": "/mfe/mailing-service/",
+    "remoteEntry": "/mfe/mailing-service/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./MailingWebcomponent",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "mailing-service-ui",
+    "tagName": "mailing-service-ui-entrypoint",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}

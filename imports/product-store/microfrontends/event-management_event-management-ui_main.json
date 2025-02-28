@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "event-management-ui",
+    "description": "event-management-ui",
+    "remoteBaseUrl": "/mfe/event-management/",
+    "remoteEntry": "/mfe/event-management/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./EventRemoteModule",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "event-management-ui",
+    "tagName": "event-management-ui-entrypoint",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}
