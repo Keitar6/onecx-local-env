@@ -5,7 +5,7 @@
     "remoteBaseUrl": "/mfe/mailing-service/",
     "remoteEntry": "/mfe/mailing-service/remoteEntry.js",
     "note": "Imported MFE",
-    "exposedModule": "./MailingWebcomponent",
+    "exposedModule": "./MailingServiceRemoteModule",
     "technology": "WEBCOMPONENTMODULE",
     "remoteName": "mailing-service-ui",
     "tagName": "mailing-service-ui-entrypoint",

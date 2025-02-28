@@ -1,6 +1,6 @@
 {
     "version": "xxx",
-    "description": "event-management",
-    "name": "event-management",
+    "description": "event-management-svc",
+    "name": "event-management-svc",
     "type": "svc"
 }

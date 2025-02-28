@@ -1,6 +1,6 @@
 {
     "version": "xxx",
-    "description": "mailing-service",
-    "name": "mailing-service",
+    "description": "mailing-service-svc",
+    "name": "mailing-service-svc",
     "type": "svc"
 }

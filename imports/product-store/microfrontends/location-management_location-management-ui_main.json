@@ -5,10 +5,10 @@
     "remoteBaseUrl": "/mfe/location-management/",
     "remoteEntry": "/mfe/location-management/remoteEntry.js",
     "note": "Imported MFE",
-    "exposedModule": "./LocationRemoteModule",
+    "exposedModule": "./LocationMgmtRemoteModule",
     "technology": "WEBCOMPONENTMODULE",
     "remoteName": "location-management-ui",
-    "tagName": "location-management-ui-entrypoint",
+    "tagName": "ocx-location-component",
     "type": "MODULE",
     "deprecated": false,
     "undeployed": false

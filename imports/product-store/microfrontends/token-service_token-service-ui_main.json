@@ -5,7 +5,7 @@
     "remoteBaseUrl": "/mfe/token-service/",
     "remoteEntry": "/mfe/token-service/remoteEntry.js",
     "note": "Imported MFE",
-    "exposedModule": "./TokenWebcomponent",
+    "exposedModule": "./TokenServiceRemoteModule",
     "technology": "WEBCOMPONENTMODULE",
     "remoteName": "token-service-ui",
     "tagName": "token-service-ui-entrypoint",

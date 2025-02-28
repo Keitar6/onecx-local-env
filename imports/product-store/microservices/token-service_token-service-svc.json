@@ -1,6 +1,6 @@
 {
     "version": "xxx",
-    "description": "token-service",
-    "name": "token-service",
+    "description": "token-service-svc",
+    "name": "token-service-svc",
     "type": "svc"
 }

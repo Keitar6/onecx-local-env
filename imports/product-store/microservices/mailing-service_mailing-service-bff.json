@@ -1,6 +1,6 @@
 {
     "version": "xxx",
-    "description": "token-service-bff",
-    "name": "token-service-bff",
+    "description": "mailing-service-bff",
+    "name": "mailing-service-bff",
     "type": "bff"
 }

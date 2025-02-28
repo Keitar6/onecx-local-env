@@ -5,10 +5,10 @@
     "remoteBaseUrl": "/mfe/event-touchpoint-management/",
     "remoteEntry": "/mfe/event-touchpoint-management/remoteEntry.js",
     "note": "Imported MFE",
-    "exposedModule": "./TouchpointMGMTRemoteModule",
+    "exposedModule": "./TouchpointMgmtRemoteModule",
     "technology": "WEBCOMPONENTMODULE",
     "remoteName": "event-touchpoint-management-ui",
-    "tagName": "event-touchpoint-management-ui-entrypoint",
+    "tagName": "ocx-touchpoint-management-component",
     "type": "MODULE",
     "deprecated": false,
     "undeployed": false
