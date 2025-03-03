@@ -1,0 +1,7 @@
+{
+    "version": "xxx",
+    "description": "Event participant",
+    "basePath": "/event-participant",
+    "displayName": "Event participant",
+    "iconName": "palette"
+}
