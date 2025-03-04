@@ -51,21 +51,21 @@ CREATE DATABASE event_management;
 GRANT ALL PRIVILEGES ON DATABASE event_management TO event_management;
 
 -- --event_touchpoint_management
-CREATE USER event_touchpoint_management WITH ENCRYPTED PASSWORD 'event_touchpoint_management';
-CREATE DATABASE event_touchpoint_management;
-GRANT ALL PRIVILEGES ON DATABASE event_touchpoint_management TO event_touchpoint_management;
+-- CREATE USER event_touchpoint_management WITH ENCRYPTED PASSWORD 'event_touchpoint_management';
+-- CREATE DATABASE event_touchpoint_management;
+-- GRANT ALL PRIVILEGES ON DATABASE event_touchpoint_management TO event_touchpoint_management;
 
 -- --location_management
 CREATE USER location_management WITH ENCRYPTED PASSWORD 'location_management';
 CREATE DATABASE location_management;
 GRANT ALL PRIVILEGES ON DATABASE location_management TO location_management;
 
--- --token_service
-CREATE USER token_service WITH ENCRYPTED PASSWORD 'token_service';
-CREATE DATABASE token_service;
-GRANT ALL PRIVILEGES ON DATABASE token_service TO token_service;
+-- -- --token_service
+-- CREATE USER token_service WITH ENCRYPTED PASSWORD 'token_service';
+-- CREATE DATABASE token_service;
+-- GRANT ALL PRIVILEGES ON DATABASE token_service TO token_service;
 
--- --mailing_service
-CREATE USER mailing_service WITH ENCRYPTED PASSWORD 'mailing_service';
-CREATE DATABASE mailing_service;
-GRANT ALL PRIVILEGES ON DATABASE mailing_service TO mailing_service;
+-- -- --mailing_service
+-- CREATE USER mailing_service WITH ENCRYPTED PASSWORD 'mailing_service';
+-- CREATE DATABASE mailing_service;
+-- GRANT ALL PRIVILEGES ON DATABASE mailing_service TO mailing_service;

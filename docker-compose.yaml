@@ -118,35 +118,33 @@ services:
   ######### Products #######################################
   ##############################################################
 
-
-
   # ######### EVENT_MANAGEMENT_CLIENT_PWA
 
-  event-management-client-pwa-ui:
-    image: ${EVENT_MANAGEMENT_CLIENT_PWA_UI}
-    container_name: event-management-client-pwa-ui
-    environment:
-      ONECX_PERMISSIONS_ENABLED: true
-      ONECX_PERMISSIONS_CACHE_ENABLED: false
-      ONECX_PERMISSIONS_PRODUCT_NAME: "event-management-client-pwa"
-      APP_BASE_HREF: "/event-management-client-pwa/"
-      KEYCLOAK_URL: http://keycloak-app
-      ONECX_VAR_REMAP: "KEYCLOAK_REALM=KC_REALM;KEYCLOAK_CLIENT_ID=CLIENT_USER_ID"
-      CLIENT_USER_ID: "event-management-client-pwa-ui-client"
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      event-participant-bff:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.event-management-client-pwa-ui.loadbalancer.server.port=8080"
-      - "traefik.http.routers.event-management-client-pwa-ui.rule=Host(`local-proxy`)&&PathPrefix(`/event-management-client-pwa/`)"
-    env_file:
-      - common.env
-    networks:
-      - example
+  # event-management-client-pwa-ui:
+  #   image: ${EVENT_MANAGEMENT_CLIENT_PWA_UI}
+  #   container_name: event-management-client-pwa-ui
+  #   environment:
+  #     ONECX_PERMISSIONS_ENABLED: true
+  #     ONECX_PERMISSIONS_CACHE_ENABLED: false
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "event-management-client-pwa"
+  #     APP_BASE_HREF: "/event-management-client-pwa/"
+  #     KEYCLOAK_URL: http://keycloak-app
+  #     ONECX_VAR_REMAP: "KEYCLOAK_REALM=KC_REALM;KEYCLOAK_CLIENT_ID=CLIENT_USER_ID"
+  #     CLIENT_USER_ID: "event-management-client-pwa-ui-client"
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     event-participant-bff:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.event-management-client-pwa-ui.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.event-management-client-pwa-ui.rule=Host(`local-proxy`)&&PathPrefix(`/event-management-client-pwa/`)"
+  #   env_file:
+  #     - common.env
+  #   networks:
+  #     - example
 
-  # ########## EVENT_MGMT
+  ########## EVENT_MGMT
   
   event-management-svc:
     image: ${EVENT_MANAGEMENT_SVC}
@@ -227,104 +225,104 @@ services:
 
   ########## EVENT_PARTICIPANT
   
-  event-participant-bff:
-    image: ${EVENT_PARTICIPANT_BFF}
-    container_name: event-participant-bff
-    environment:
-      ONECX_PERMISSIONS_PRODUCT_NAME: "event-participant"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      onecx-theme-svc:
-        condition: service_started
-      onecx-permission-svc:
-        condition: service_started
-      onecx-product-store-svc:
-        condition: service_started
-      onecx-user-profile-svc:
-        condition: service_started
-      onecx-tenant-svc:
-        condition: service_started
-      onecx-workspace-svc:
-        condition: service_started
-    labels:
-      - "traefik.http.services.event-participant-bff.loadbalancer.server.port=8080"
-      - "traefik.http.routers.event-participant-bff.rule=Host(`event-participant-bff`)"
-    env_file:
-      - common.env
-      - bff.env
-    networks:
-      - example
+  # event-participant-bff:
+  #   image: ${EVENT_PARTICIPANT_BFF}
+  #   container_name: event-participant-bff
+  #   environment:
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "event-participant"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     onecx-theme-svc:
+  #       condition: service_started
+  #     onecx-permission-svc:
+  #       condition: service_started
+  #     onecx-product-store-svc:
+  #       condition: service_started
+  #     onecx-user-profile-svc:
+  #       condition: service_started
+  #     onecx-tenant-svc:
+  #       condition: service_started
+  #     onecx-workspace-svc:
+  #       condition: service_started
+  #   labels:
+  #     - "traefik.http.services.event-participant-bff.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.event-participant-bff.rule=Host(`event-participant-bff`)"
+  #   env_file:
+  #     - common.env
+  #     - bff.env
+  #   networks:
+  #     - example
 
-  # ########## EVENT_TOUCHPOINT_MGMT
+  ########## EVENT_TOUCHPOINT_MGMT
   
-  event-touchpoint-management-svc:
-    image: ${EVENT_TOUCHPOINT_MANAGEMENT_SVC}
-    environment:
-      QUARKUS_DATASOURCE_USERNAME: event_touchpoint_management
-      QUARKUS_DATASOURCE_PASSWORD: event_touchpoint_management
-      QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgresdb:5432/event_touchpoint_management?sslmode=disable"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-    depends_on:
-      postgresdb:
-        condition: service_healthy
-      keycloak-app:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.event-touchpoint-management-svc.loadbalancer.server.port=8080"
-      - "traefik.http.routers.event-touchpoint-management-svc.rule=Host(`event-touchpoint-management-svc`)"
-    env_file:
-      - common.env
-      - svc.env
-    networks:
-      - example
+  # event-touchpoint-management-svc:
+  #   image: ${EVENT_TOUCHPOINT_MANAGEMENT_SVC}
+  #   environment:
+  #     QUARKUS_DATASOURCE_USERNAME: event_touchpoint_management
+  #     QUARKUS_DATASOURCE_PASSWORD: event_touchpoint_management
+  #     QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgresdb:5432/event_touchpoint_management?sslmode=disable"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #   depends_on:
+  #     postgresdb:
+  #       condition: service_healthy
+  #     keycloak-app:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.event-touchpoint-management-svc.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.event-touchpoint-management-svc.rule=Host(`event-touchpoint-management-svc`)"
+  #   env_file:
+  #     - common.env
+  #     - svc.env
+  #   networks:
+  #     - example
 
-  event-touchpoint-management-bff:
-    image: ${EVENT_TOUCHPOINT_MANAGEMENT_BFF}
-    container_name: event-touchpoint-management-bff
-    environment:
-      ONECX_PERMISSIONS_PRODUCT_NAME: "event-touchpoint-management"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      onecx-theme-svc:
-        condition: service_started
-      onecx-permission-svc:
-        condition: service_started
-      onecx-product-store-svc:
-        condition: service_started
-      onecx-user-profile-svc:
-        condition: service_started
-      onecx-tenant-svc:
-        condition: service_started
-      onecx-workspace-svc:
-        condition: service_started
-      event-touchpoint-management-svc:
-        condition: service_started
-    labels:
-      - "traefik.http.services.event-touchpoint-management-bff.loadbalancer.server.port=8080"
-      - "traefik.http.routers.event-touchpoint-management-bff.rule=Host(`event-touchpoint-management-bff`)"
-    env_file:
-      - common.env
-      - bff.env
-    networks:
-      - example
+  # event-touchpoint-management-bff:
+  #   image: ${EVENT_TOUCHPOINT_MANAGEMENT_BFF}
+  #   container_name: event-touchpoint-management-bff
+  #   environment:
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "event-touchpoint-management"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     onecx-theme-svc:
+  #       condition: service_started
+  #     onecx-permission-svc:
+  #       condition: service_started
+  #     onecx-product-store-svc:
+  #       condition: service_started
+  #     onecx-user-profile-svc:
+  #       condition: service_started
+  #     onecx-tenant-svc:
+  #       condition: service_started
+  #     onecx-workspace-svc:
+  #       condition: service_started
+  #     event-touchpoint-management-svc:
+  #       condition: service_started
+  #   labels:
+  #     - "traefik.http.services.event-touchpoint-management-bff.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.event-touchpoint-management-bff.rule=Host(`event-touchpoint-management-bff`)"
+  #   env_file:
+  #     - common.env
+  #     - bff.env
+  #   networks:
+  #     - example
 
   # There is not image of it yet - 03.03.2025
   # event-touchpoint-management-ui:
@@ -342,7 +340,7 @@ services:
   #   networks:
   #     - example
 
-  # ########## EVENT_TOUCHPOINT
+  ########## EVENT_TOUCHPOINT
   
   # There is not image of it yet - 03.03.2025
   # event-touchpoint-bff:
@@ -382,31 +380,31 @@ services:
   #   networks:
   #     - example
 
-  event-touchpoint-ui:
-    image: ${EVENT_TOUCHPOINT_UI}
-    container_name: event-touchpoint-ui
-    environment:
-      ONECX_PERMISSIONS_ENABLED: true
-      ONECX_PERMISSIONS_CACHE_ENABLED: false
-      ONECX_PERMISSIONS_PRODUCT_NAME: "event-touchpoint"
-      APP_BASE_HREF: "/event-touchpoint/"
-      KEYCLOAK_URL: http://keycloak-app
-      ONECX_VAR_REMAP: "KEYCLOAK_REALM=KC_REALM;KEYCLOAK_CLIENT_ID=CLIENT_USER_ID"
-      CLIENT_USER_ID: "event-touchpoint-ui-client"
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      # event-touchpoint-bff:
-      #   condition: service_healthy
-    labels:
-      - "traefik.http.services.event-touchpoint-ui.loadbalancer.server.port=8080"
-      - "traefik.http.routers.event-touchpoint-ui.rule=Host(`local-proxy`)&&PathPrefix(`/event-touchpoint/`)"
-    env_file:
-      - common.env
-    networks:
-      - example
+  # event-touchpoint-ui:
+  #   image: ${EVENT_TOUCHPOINT_UI}
+  #   container_name: event-touchpoint-ui
+  #   environment:
+  #     ONECX_PERMISSIONS_ENABLED: true
+  #     ONECX_PERMISSIONS_CACHE_ENABLED: false
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "event-touchpoint"
+  #     APP_BASE_HREF: "/event-touchpoint/"
+  #     KEYCLOAK_URL: http://keycloak-app
+  #     ONECX_VAR_REMAP: "KEYCLOAK_REALM=KC_REALM;KEYCLOAK_CLIENT_ID=CLIENT_USER_ID"
+  #     CLIENT_USER_ID: "event-touchpoint-ui-client"
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     # event-touchpoint-bff:
+  #     #   condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.event-touchpoint-ui.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.event-touchpoint-ui.rule=Host(`local-proxy`)&&PathPrefix(`/event-touchpoint/`)"
+  #   env_file:
+  #     - common.env
+  #   networks:
+  #     - example
 
-  # ######### LOCATION_MGMT
+  ######### LOCATION_MGMT
   
   location-management-svc:
     image: ${LOCATION_MANAGEMENT_SVC}
@@ -433,212 +431,298 @@ services:
     networks:
         - example
   
-  location-management-bff:
-    image: ${LOCATION_MANAGEMENT_BFF}
-    container_name: location-management-bff
-    environment:
-      ONECX_PERMISSIONS_PRODUCT_NAME: "location-management"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      onecx-theme-svc:
-        condition: service_started
-      onecx-permission-svc:
-        condition: service_started
-      onecx-product-store-svc:
-        condition: service_started
-      onecx-user-profile-svc:
-        condition: service_started
-      onecx-tenant-svc:
-        condition: service_started
-      onecx-workspace-svc:
-        condition: service_started
-      location-management-svc:
-        condition: service_started
-    labels:
-      - "traefik.http.services.location-management-bff.loadbalancer.server.port=8080"
-      - "traefik.http.routers.location-management-bff.rule=Host(`location-management-bff`)"
-    env_file:
-      - common.env
-      - bff.env
-    networks:
-      - example
+  # location-management-bff:
+  #   image: ${LOCATION_MANAGEMENT_BFF}
+  #   container_name: location-management-bff
+  #   environment:
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "location-management"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     onecx-theme-svc:
+  #       condition: service_started
+  #     onecx-permission-svc:
+  #       condition: service_started
+  #     onecx-product-store-svc:
+  #       condition: service_started
+  #     onecx-user-profile-svc:
+  #       condition: service_started
+  #     onecx-tenant-svc:
+  #       condition: service_started
+  #     onecx-workspace-svc:
+  #       condition: service_started
+  #     location-management-svc:
+  #       condition: service_started
+  #   labels:
+  #     - "traefik.http.services.location-management-bff.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.location-management-bff.rule=Host(`location-management-bff`)"
+  #   env_file:
+  #     - common.env
+  #     - bff.env
+  #   networks:
+  #     - example
 
-  location-management-ui:
-    image: ${LOCATION_MANAGEMENT_UI}
-    environment:
-      APP_BASE_HREF: "/mfe/location-management/"
-      APP_ID: "location-management-ui"
-      PRODUCT_NAME: "location-management"
-    depends_on:
-      location-management-bff:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.location-management-ui.loadbalancer.server.port=8080"
-      - "traefik.http.routers.location-management-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/location-management/`)"
-    networks:
-      - example
+  # location-management-ui:
+  #   image: ${LOCATION_MANAGEMENT_UI}
+  #   environment:
+  #     APP_BASE_HREF: "/mfe/location-management/"
+  #     APP_ID: "location-management-ui"
+  #     PRODUCT_NAME: "location-management"
+  #   depends_on:
+  #     location-management-bff:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.location-management-ui.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.location-management-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/location-management/`)"
+  #   networks:
+  #     - example
 
   ########## TOKEN_SERVICE
 
-  token-service-svc:
-    image: ${TOKEN_SERVICE_SVC}
-    environment:
-      QUARKUS_DATASOURCE_USERNAME: token_service
-      QUARKUS_DATASOURCE_PASSWORD: token_service
-      QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgresdb:5432/token_service?sslmode=disable"
-      TKIT_RS_CONTEXT_TENANT_ID_MOCK_ENABLED: "true"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-    depends_on:
-      postgresdb:
-        condition: service_healthy
-      keycloak-app:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.token-service-svc.loadbalancer.server.port=8080"
-      - "traefik.http.routers.token-service-svc.rule=Host(`token-service-svc`)"
-    env_file:
-      - common.env
-      - svc.env
-    networks:
-      - example
+  # token-service-svc:
+  #   image: ${TOKEN_SERVICE_SVC}
+  #   environment:
+  #     QUARKUS_DATASOURCE_USERNAME: token_service
+  #     QUARKUS_DATASOURCE_PASSWORD: token_service
+  #     QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgresdb:5432/token_service?sslmode=disable"
+  #     TKIT_RS_CONTEXT_TENANT_ID_MOCK_ENABLED: "true"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #   depends_on:
+  #     postgresdb:
+  #       condition: service_healthy
+  #     keycloak-app:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.token-service-svc.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.token-service-svc.rule=Host(`token-service-svc`)"
+  #   env_file:
+  #     - common.env
+  #     - svc.env
+  #   networks:
+  #     - example
 
-  token-service-bff:
-    image: ${TOKEN_SERVICE_BFF}
-    container_name: token-service-bff
-    environment:
-      ONECX_PERMISSIONS_PRODUCT_NAME: "token-service"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      onecx-theme-svc:
-        condition: service_started
-      onecx-permission-svc:
-        condition: service_started
-      onecx-product-store-svc:
-        condition: service_started
-      onecx-user-profile-svc:
-        condition: service_started
-      onecx-tenant-svc:
-        condition: service_started
-      onecx-workspace-svc:
-        condition: service_started
-      token-service-svc:
-        condition: service_started
-    labels:
-      - "traefik.http.services.token-service-bff.loadbalancer.server.port=8080"
-      - "traefik.http.routers.token-service-bff.rule=Host(`token-service-bff`)"
-    env_file:
-      - common.env
-      - bff.env
-    networks:
-      - example
+  # token-service-bff:
+  #   image: ${TOKEN_SERVICE_BFF}
+  #   container_name: token-service-bff
+  #   environment:
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "token-service"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     onecx-theme-svc:
+  #       condition: service_started
+  #     onecx-permission-svc:
+  #       condition: service_started
+  #     onecx-product-store-svc:
+  #       condition: service_started
+  #     onecx-user-profile-svc:
+  #       condition: service_started
+  #     onecx-tenant-svc:
+  #       condition: service_started
+  #     onecx-workspace-svc:
+  #       condition: service_started
+  #     token-service-svc:
+  #       condition: service_started
+  #   labels:
+  #     - "traefik.http.services.token-service-bff.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.token-service-bff.rule=Host(`token-service-bff`)"
+  #   env_file:
+  #     - common.env
+  #     - bff.env
+  #   networks:
+  #     - example
 
-  token-service-ui:
-    image: ${TOKEN_SERVICE_UI}
-    environment:
-      APP_BASE_HREF: "/mfe/token-service/"
-      APP_ID: "token-service-ui"
-      PRODUCT_NAME: "token-service"
-    depends_on:
-      token-service-bff:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.token-service-ui.loadbalancer.server.port=8080"
-      - "traefik.http.routers.token-service-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/token-service/`)"
-    networks:
-      - example
+  # token-service-ui:
+  #   image: ${TOKEN_SERVICE_UI}
+  #   environment:
+  #     APP_BASE_HREF: "/mfe/token-service/"
+  #     APP_ID: "token-service-ui"
+  #     PRODUCT_NAME: "token-service"
+  #   depends_on:
+  #     token-service-bff:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.token-service-ui.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.token-service-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/token-service/`)"
+  #   networks:
+  #     - example
 
   ########## MAILING_SERVICE
 
-  mailing-service-svc:
-    image: ${MAILING_SERVICE_SVC}
-    environment:
-      QUARKUS_DATASOURCE_USERNAME: mailing_service
-      QUARKUS_DATASOURCE_PASSWORD: mailing_service
-      QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgresdb:5432/mailing_service?sslmode=disable"
-      TKIT_RS_CONTEXT_TENANT_ID_MOCK_ENABLED: "true"
-    depends_on:
-      postgresdb:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.mailing-service-svc.loadbalancer.server.port=8080"
-      - "traefik.http.routers.mailing-service-svc.rule=Host(`mailing-service-svc`)"
-    env_file:
-      - common.env
-      - svc.env
-    networks:
-      - example
+  # mailing-service-svc:
+  #   image: ${MAILING_SERVICE_SVC}
+  #   environment:
+  #     QUARKUS_DATASOURCE_USERNAME: mailing_service
+  #     QUARKUS_DATASOURCE_PASSWORD: mailing_service
+  #     QUARKUS_DATASOURCE_JDBC_URL: "jdbc:postgresql://postgresdb:5432/mailing_service?sslmode=disable"
+  #     TKIT_RS_CONTEXT_TENANT_ID_MOCK_ENABLED: "true"
+  #   depends_on:
+  #     postgresdb:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.mailing-service-svc.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.mailing-service-svc.rule=Host(`mailing-service-svc`)"
+  #   env_file:
+  #     - common.env
+  #     - svc.env
+  #   networks:
+  #     - example
 
-  mailing-service-bff:
-    image: ${MAILING_SERVICE_BFF}
-    container_name: mailing-service-bff
-    environment:
-      ONECX_PERMISSIONS_PRODUCT_NAME: "mailing-service"
-    healthcheck:
-      test: curl --head -fsS http://localhost:8080/q/health
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-    depends_on:
-      keycloak-app:
-        condition: service_healthy
-      onecx-theme-svc:
-        condition: service_started
-      onecx-permission-svc:
-        condition: service_started
-      onecx-product-store-svc:
-        condition: service_started
-      onecx-user-profile-svc:
-        condition: service_started
-      onecx-tenant-svc:
-        condition: service_started
-      onecx-workspace-svc:
-        condition: service_started
-      mailing-service-svc:
-        condition: service_started
-    labels:
-      - "traefik.http.services.mailing-service-bff.loadbalancer.server.port=8080"
-      - "traefik.http.routers.mailing-service-bff.rule=Host(`mailing-service-bff`)"
-    env_file:
-      - common.env
-      - bff.env
-    networks:
-      - example
+  # mailing-service-bff:
+  #   image: ${MAILING_SERVICE_BFF}
+  #   container_name: mailing-service-bff
+  #   environment:
+  #     ONECX_PERMISSIONS_PRODUCT_NAME: "mailing-service"
+  #   healthcheck:
+  #     test: curl --head -fsS http://localhost:8080/q/health
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 10s
+  #   depends_on:
+  #     keycloak-app:
+  #       condition: service_healthy
+  #     onecx-theme-svc:
+  #       condition: service_started
+  #     onecx-permission-svc:
+  #       condition: service_started
+  #     onecx-product-store-svc:
+  #       condition: service_started
+  #     onecx-user-profile-svc:
+  #       condition: service_started
+  #     onecx-tenant-svc:
+  #       condition: service_started
+  #     onecx-workspace-svc:
+  #       condition: service_started
+  #     mailing-service-svc:
+  #       condition: service_started
+  #   labels:
+  #     - "traefik.http.services.mailing-service-bff.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.mailing-service-bff.rule=Host(`mailing-service-bff`)"
+  #   env_file:
+  #     - common.env
+  #     - bff.env
+  #   networks:
+  #     - example
 
-  mailing-service-ui:
-    image: ${MAILING_SERVICE_UI}
-    environment:
-      APP_BASE_HREF: "/mfe/mailing-service/"
-      APP_ID: "mailing-service-ui"
-      PRODUCT_NAME: "mailing-service"
-    depends_on:
-      mailing-service-bff:
-        condition: service_healthy
-    labels:
-      - "traefik.http.services.mailing-service-ui.loadbalancer.server.port=8080"
-      - "traefik.http.routers.mailing-service-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/mailing-service/`)"
-    networks:
-      - example
+  # mailing-service-ui:
+  #   image: ${MAILING_SERVICE_UI}
+  #   environment:
+  #     APP_BASE_HREF: "/mfe/mailing-service/"
+  #     APP_ID: "mailing-service-ui"
+  #     PRODUCT_NAME: "mailing-service"
+  #   depends_on:
+  #     mailing-service-bff:
+  #       condition: service_healthy
+  #   labels:
+  #     - "traefik.http.services.mailing-service-ui.loadbalancer.server.port=8080"
+  #     - "traefik.http.routers.mailing-service-ui.rule=Host(`local-proxy`)&&PathPrefix(`/mfe/mailing-service/`)"
+  #   networks:
+  #     - example
 
-  # ########## ONECX-SHELL
+  ########## CAMUNDA
+  # zeebe:
+  #   image: camunda/zeebe:8.5.0
+  #   container_name: zeebe
+  #   environment:
+  #     - ZEEBE_BROKER_GATEWAY_ENABLE=true
+  #     - ZEEBE_BROKER_CLUSTER_PARTITIONS_COUNT=1
+  #     - ZEEBE_BROKER_CLUSTER_REPLICATION_FACTOR=1
+  #     - ZEEBE_BROKER_CLUSTER_CLUSTER_SIZE=1
+  #     - ZEEBE_BROKER_DATA_DISK_USAGE_REPLICATIONWATERMARK=0.9
+  #     - ZEEBE_BROKER_DATA_DISK_USAGE_COMMANDWATERMARK=0.85
+  #     - SPRING_PROFILES_ACTIVE=postgres
+  #     - ZEEBE_BROKER_DB_HOST=postgresdb
+  #     - ZEEBE_BROKER_DB_PORT=5432
+  #     - ZEEBE_BROKER_DB_NAME=zeebe
+  #     - ZEEBE_BROKER_DB_USER=postgres
+  #     - ZEEBE_BROKER_DB_PASSWORD=admin
+  #   depends_on:
+  #     postgresdb:
+  #       condition: service_healthy
+  #   ports:
+  #     - "26500:26500" # Zeebe client communication
+  #   networks:
+  #     - example
+
+  # operate:
+  #   image: camunda/operate:8.5.0
+  #   container_name: operate
+  #   environment:
+  #     - CAMUNDA_OPERATE_ZEEBE_GATEWAYADDRESS=zeebe:26500
+  #     - CAMUNDA_OPERATE_ELASTICSEARCH_URL=http://elasticsearch:9200
+  #     - CAMUNDA_OPERATE_IDENTITY_ISSUERBACKENDURL=http://identity:8084
+  #   depends_on:
+  #     - zeebe
+  #     - elasticsearch
+  #   ports:
+  #     - "8081:8080"
+  #   networks:
+  #     - example
+
+  # tasklist:
+  #   image: camunda/tasklist:8.5.0
+  #   container_name: tasklist
+  #   environment:
+  #     - CAMUNDA_TASKLIST_ZEEBE_GATEWAYADDRESS=zeebe:26500
+  #     - CAMUNDA_TASKLIST_ELASTICSEARCH_URL=http://elasticsearch:9200
+  #     - CAMUNDA_TASKLIST_IDENTITY_ISSUERBACKENDURL=http://identity:8084
+  #   depends_on:
+  #     - zeebe
+  #     - elasticsearch
+  #   ports:
+  #     - "8082:8080"
+  #   networks:
+  #     - example
+
+  # identity:
+  #   image: camunda/identity:8.5.0
+  #   container_name: identity
+  #   environment:
+  #     - IDENTITY_DATABASE_HOST=postgresdb
+  #     - IDENTITY_DATABASE_PORT=5432
+  #     - IDENTITY_DATABASE_NAME=identity
+  #     - IDENTITY_DATABASE_USERNAME=postgres
+  #     - IDENTITY_DATABASE_PASSWORD=admin
+  #     - KEYCLOAK_FRONTEND_URL=http://keycloak:8080
+  #     - IDENTITY_KEYCLOAK_ISSUERURL=http://keycloak:8080/realms/camunda-platform
+  #     - IDENTITY_KEYCLOAK_ADMIN_URL=http://keycloak:8080/admin/realms/camunda-platform
+  #   depends_on:
+  #     postgresdb:
+  #       condition: service_healthy
+  #   ports:
+  #     - "8084:8084"
+  #   networks:
+  #     - example
+
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+  #   container_name: elasticsearch
+  #   environment:
+  #     - discovery.type=single-node
+  #     - xpack.security.enabled=false
+  #   ports:
+  #     - "9200:9200"
+  #   networks:
+  #     - example
+
+  ########## ONECX-SHELL
 
   onecx-shell-ui:
     image: ${ONECX_SHELL_UI}
