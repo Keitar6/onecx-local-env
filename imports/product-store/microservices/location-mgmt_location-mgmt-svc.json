@@ -1,0 +1,6 @@
+{
+    "version": "xxx",
+    "description": "location-mgmt-svc",
+    "name": "location-mgmt-svc",
+    "type": "svc"
+}
