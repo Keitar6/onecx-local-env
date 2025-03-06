@@ -1,0 +1,15 @@
+{
+    "appVersion": "xxx",
+    "appName": "onecx_touchpoint_management-ui",
+    "description": "onecx_touchpoint_management-ui",
+    "remoteBaseUrl": "/mfe/onecx_touchpoint_management/",
+    "remoteEntry": "/mfe/onecx_touchpoint_management/remoteEntry.js",
+    "note": "Imported MFE",
+    "exposedModule": "./TouchpointMgmtRemoteModule",
+    "technology": "WEBCOMPONENTMODULE",
+    "remoteName": "onecx_touchpoint_management-ui",
+    "tagName": "ocx-touchpoint-management-component",
+    "type": "MODULE",
+    "deprecated": false,
+    "undeployed": false
+}

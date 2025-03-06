@@ -50,10 +50,10 @@ CREATE USER event_management WITH ENCRYPTED PASSWORD 'event_management';
 CREATE DATABASE event_management;
 GRANT ALL PRIVILEGES ON DATABASE event_management TO event_management;
 
---event_touchpoint_management
-CREATE USER event_touchpoint_management WITH ENCRYPTED PASSWORD 'event_touchpoint_management';
-CREATE DATABASE event_touchpoint_management;
-GRANT ALL PRIVILEGES ON DATABASE event_touchpoint_management TO event_touchpoint_management;
+--onecx_touchpoint_management
+CREATE USER onecx_touchpoint_management WITH ENCRYPTED PASSWORD 'onecx_touchpoint_management';
+CREATE DATABASE onecx_touchpoint_management;
+GRANT ALL PRIVILEGES ON DATABASE onecx_touchpoint_management TO onecx_touchpoint_management;
 
 -- --location_mgmt
 CREATE USER location_mgmt WITH ENCRYPTED PASSWORD 'location_mgmt';
